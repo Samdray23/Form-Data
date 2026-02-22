@@ -6,6 +6,8 @@ const phoneNumberInput = document.getElementById("phone");
 const stateInput = document.getElementById("state");
 const homeTownInput = document.getElementById("hometown");
 
+let arrayOfDatas = [];
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -17,5 +19,21 @@ form.addEventListener("submit", function (event) {
     state: stateInput.value,
     hometown: homeTownInput.value,
   };
-  console.log(formData);
+
+  arrayOfDatas.push(formData);
+  console.log(arrayOfDatas);
+  form.reset();
 });
+
+//print the data to the ui//
+
+let displayCountainer = document.getElementById("countainer");
+displayCountainer.innerHTML = "";
+
+function displayData() {
+  arrayOfDatas.forEach(function (data) {
+    const dataElement = document.createElement("p");
+    dataElement.textContent = `Surname: ${data.surname}, Name: ${data.name}, Email: ${data.email}, Phone: ${data.phone}, State: ${data.state}, Hometown: ${data.hometown}`;
+    displayCountainer.append(dataElement);
+  });
+}
